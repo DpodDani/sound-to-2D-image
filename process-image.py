@@ -6,7 +6,7 @@ parser = argparse.ArgumentParser()
 # Adds the required arguments
 parser.add_argument("imageFilePath", help="The file path of the image to be processed") # by default this is a string
 parser.add_argument("--usage", help="python process-image.py <path_to_file>\nPreferably the image should be in the same folder as this python module")
-# Enables the user of these arguments in the code below
+# Enables the use of these arguments in the code below
 args = parser.parse_args()
 
 myImage = Image.open(args.imageFilePath).convert('L') # converts image to greyscale
