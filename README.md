@@ -23,6 +23,6 @@ Thomas Dove: "The main idea of the project is seeing if it is possible to train 
 ---
 ## Collaborators:
 * Thomas Dove
-* Thomas
+* Thomas Heap
 * Anna Stedman
 * Daniel Namu-Fetha
