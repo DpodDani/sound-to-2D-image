@@ -1,4 +1,4 @@
-from ProcessImage import generate_greyscale_matrix
+from ProcessImage import generate_color_matrix
 from HilbertCurve import hilbertmatrix
 from VectorToMusic import generateMusic
 
@@ -17,12 +17,13 @@ parser.add_argument("--usage", help="python ProcessImage.py <path_to_file>\nPref
 # Enables the use of these arguments in the code below
 args = parser.parse_args()
 
-myImage = Image.open(args.imageFilePath).convert('L') # converts image to greyscale
 
 
-greyscaleMatrix = generate_greyscale_matrix(myImage) #Generate the greyscale matrix
+colorType = int(input('Enter color palette type: (0 = greyscale, 1 = RGB)'))
 
-vect = hilbertmatrix(greyscaleMatrix) #Turns matrix into vector using Hilbert curve
+colorMatrix = generate_color_matrix(args.imageFilePath, colorType) #Generate the greyscale matrix
+
+vect = hilbertmatrix(colorMatrix) #Turns matrix into vector using Hilbert curve
 
 tempo = int(input('Enter desired tempo:'))
 scaleType = int(input('Enter scale type (0 = Chromatic, 1 = Diatonic):'))

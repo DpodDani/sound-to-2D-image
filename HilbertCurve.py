@@ -2,18 +2,36 @@
 import numpy as np
 import math
 vect = []
+outputVect = [];
 
+def createmap(width): #Create matrix with values 0 to width^2
+    mappingMatrix = [[0 for num in range(width)] for num in range(width)] # initialises everything to 0
 
+    for num in range(0,int(math.pow(width,2))):
+        x = num // width
+        y = num % width
+        mappingMatrix[x][y] = num
 
-def hilbertmatrix(greyscaleMatrix):             # decides initial shape based on size of matrix
-    mat = np.matrix(np.array(greyscaleMatrix))
+    return mappingMatrix
+
+def hilbertmatrix(colorMatrix):             # decides initial shape based on size of matrix
+    width = len(colorMatrix)
+
+    mat = np.matrix(np.array(createmap(width)))
 
     if ((2*math.log(len(mat)) % 4,2) == 0):
         recursion(mat, 2)
     else:
         recursion(mat, 1)
 
-    return vect
+    for num in range(0,int(math.pow(width,2))):
+        index = vect[num]
+        x = index // width
+        y = index % width
+        outputVect.append(colorMatrix[x][y])
+
+    print(outputVect)
+    return outputVect
 
 def recursion(mat, shape):
 
