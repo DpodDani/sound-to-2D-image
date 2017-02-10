@@ -1,13 +1,19 @@
+
 import numpy as np
 import math
 vect = []
 
-def hilbertmatrix(mat):             # decides initial shape based on size of matrix
-    if ((2*log(len(mat)) % 4) == 0):
+
+
+def hilbertmatrix(greyscaleMatrix):             # decides initial shape based on size of matrix
+    mat = np.matrix(np.array(greyscaleMatrix))
+
+    if ((2*math.log(len(mat)) % 4,2) == 0):
         recursion(mat, 2)
     else:
         recursion(mat, 1)
 
+    return vect
 
 def recursion(mat, shape):
 
@@ -45,7 +51,6 @@ def recursion(mat, shape):
         array2 = mat[(m//2):(m), 0:((m//2))]
         array3 = mat[0:((m//2)), (m//2):(m)]
         array4 = mat[(m//2):(m), (m//2):(m)]
-        print(array1)
         if (shape == 1):
             #print('shape1', m)                 # makes a |   | shape
             recursion(array1, 2)                #         |___|
