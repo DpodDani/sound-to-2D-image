@@ -30,11 +30,35 @@ body {
   background-color: #6a7477; /* Dark Nice Steel Blue */
 }
 
+#myTable {
+  display: none;
+}
+
+.container {
+  width: 100%;
+}
+
+@media (min-width: 1200px){
+  .container {
+    width: 70%;
+  }
+}
+
+@media (min-width: 1500px){
+  .container {
+    width: 50%;
+  }
+}
+
+
+td {
+  background-color: white;
+}
+
 .colors {
   padding: 10px;
   cursor: pointer;
   border-radius: 3px;
-  opacity: 0.9;
 }
 
 .red-color {
