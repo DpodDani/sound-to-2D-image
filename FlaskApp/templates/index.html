@@ -32,6 +32,8 @@
    </div>
   </nav>
 
+  <div class="container">
+
   <!-- Green box (instruction box) -->
   <div class="container-fluid bg-1 text-center">
     <h3>Choose an impage to upload</h3>
@@ -56,7 +58,7 @@
     </div>
   </div>
 
-  <!-- File upload box (where user can browse through their files) -->
+  <!-- File upload box (where user can browse through their files) and matrix -->
   <div class="container-fluid bg-2 text-center padding-10">
     <!-- The whole image uploading group -->
     <div class="input-group">
@@ -66,15 +68,41 @@
           <span class="glyphicon glyphicon-search"></span>
            Browse images <input type="file" accept="image/jpg, image/png" style="display: none;"  onchange="readURL(this);">
         </span>
+
       </label>
-      <!-- Input box displaying user selected image -->
+      <!-- Input box displaying name of user selected image -->
       <input id="fileName" class="form-control" readonly="" type="text" disabled>
+      <span id="viewSwitch" class="input-group-btn"><span class="btn btn-default">Switch between matrix and image</span></span>
     </div>
+
   </div>
 
   <div class="container-fluid bg-3 text-center padding-10">
     <img id="myImage" src="#" alt="Selected image" />
+
+    <table id="myTable" class="table table-bordered">
+      <tbody>
+        <tr>
+          <td width="70px" height="70px"></td>
+          <td width="70px" height="70px"></td>
+          <td width="70px" height="70px"></td>
+        </tr>
+        <tr>
+          <td width="70px" height="70px"></td>
+          <td width="70px" height="70px"></td>
+          <td width="70px" height="70px"></td>
+        </tr>
+        <tr>
+          <td width="70px" height="70px"></td>
+          <td width="70px" height="70px"></td>
+          <td width="70px" height="70px"></td>
+        </tr>
+      </tbody>
+    </table>
+
   </div>
+
+</div>
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
   <script src="../static/app.js"></script>
