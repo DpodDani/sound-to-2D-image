@@ -1,5 +1,29 @@
 $(document).ready( function() {
 
+  $( "#testBtn" ).click(function() {
+    console.log("Test button clicked");
+    $.ajax({
+      type : "POST",
+      url : "/test",
+      data : { param : "Did you get it?"}
+    }).done(function(result){
+      console.log(result);
+    });
+  });
+
+  $( ".colors" ).click(function(){
+    var id = $(this).attr('id');
+    console.log("Click on " + id + " button.");
+    $.ajax({
+      type : "POST",
+      url : "/colourSound",
+      data : { buttonColour : id}
+    }).done(function(result){
+      console.log("Response: " + result);
+      console.log("Played sound for: " + id + " button.");
+    });
+  });
+
   var input = $("#fileName").parents('.input-group').find(':text');
   input.val(""); // clears the file name upon reload
 
