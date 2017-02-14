@@ -19,9 +19,9 @@ args = parser.parse_args()
 
 
 
-colorType = int(input('Enter color palette type: (0 = greyscale, 1 = RGB)'))
+paletteID = int(input('Enter color palette type: (0 = greyscale, 1 = RGB-8bit, 2 = RGB-16bit)'))
 
-colorMatrix = generate_color_matrix(args.imageFilePath, colorType) #Generate the greyscale matrix
+colorMatrix = generate_color_matrix(args.imageFilePath, paletteID) #Generate the greyscale matrix
 
 vect = hilbertmatrix(colorMatrix) #Turns matrix into vector using Hilbert curve
 

@@ -1,9 +1,9 @@
 from PIL import Image
 import os, argparse
 
-def generate_color_matrix(filePath,colorType):
+def generate_color_matrix(filePath, paletteID):
 
-    if colorType == 0:
+    if paletteID == 0:
         myImage = Image.open(filePath).convert('L') # converts image to greyscale
     else:
         myImage = Image.open(filePath).convert('RGB') # converts image to greyscale
@@ -18,7 +18,11 @@ def generate_color_matrix(filePath,colorType):
     colorMatrix = set_matrix_dimensions(width) # Obtain matrix (all elements are zero)
 
     populate_matrix(colorMatrix, width, pix) # Populate the matrix with the greyscale values
+
     print(colorMatrix)
+
+    colorMatrix = convert_color_palette(colorMatrix, paletteID, width) #Convert RGB to color palette
+
     return colorMatrix
 
 
@@ -40,3 +44,25 @@ def populate_matrix(colorMatrix, width, pix):
             # print("y:", h)
             color = pix[w, h] #Stored as RGB values in an array
             colorMatrix[w][h] = color
+
+def convert_color_palette(colorMatrix, paletteID, width):
+    if(paletteID == 1):
+        for w in range(0, width):
+            for h in range(0, width):
+                RGB = colorMatrix[w][h]
+                convRGB = []
+                for i in range (3):
+                    print(RGB[i])
+                    print(RGB[i] / 128)
+                    convRGB.append( (RGB[i] / 128) * 255 ) #Takes each RGB value and takes it to either 0 or 255
+                colorMatrix[w][h] = convRGB
+
+    # if(paletteID == 2):
+    #     for w in range(0, width):
+    #         for h in range(0, width):
+    #             RGB = colorMatrix[w][h]
+    #             convRGB = [-1 for num in range(3)]
+    #             for i in range (0,3):
+    #                 convRGB[i] = int(RGB[i] / 64) * 85  #Takes each RGB value and takes it to either 0, 85, 170 or 255
+    #             colorMatrix[w][h] = convRGB
+    # return colorMatrix
