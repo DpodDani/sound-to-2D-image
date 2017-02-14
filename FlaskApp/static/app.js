@@ -11,6 +11,25 @@ $(document).ready( function() {
     });
   });
 
+  $( "td" ).click(function() {
+    console.log($(this).css("background-color"));
+    if ($(this).css("background-color") != "rgb(0, 0, 0)")
+      $(this).css("background-color", "black");
+    else
+      $(this).css("background-color", "white");
+  });
+
+  $( "#viewSwitch" ).click(function() {
+    console.log($("#myImage").css("display"));
+    if ($("#myImage").css("display") != "none"){
+      $("#myImage").css("display", "none");
+      $('#myTable').css("display", "table");
+    } else {
+      $("#myImage").css("display", "inline");
+      $('#myTable').css("display", "none");
+    }
+  });
+
   $( ".colors" ).click(function(){
     var id = $(this).attr('id');
     console.log("Click on " + id + " button.");
