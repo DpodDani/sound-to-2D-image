@@ -1,5 +1,9 @@
 $(document).ready( function() {
 
+  var hilbertCurve = [00, 01, 11, 10, 20, 30, 31, 21, 22, 32, 33, 23, 13, 12, 02, 03];
+
+  var playAnimation = false;
+
   $( "#testBtn" ).click(function() {
     console.log("Test button clicked");
     $.ajax({
@@ -11,22 +15,40 @@ $(document).ready( function() {
     });
   });
 
-  $( "td" ).click(function() {
-    console.log($(this).css("background-color"));
-    if ($(this).css("background-color") != "rgb(0, 0, 0)")
-      $(this).css("background-color", "black");
-    else
-      $(this).css("background-color", "white");
-  });
+  /* PRODUCTION FUNCTIONS */
+
+  var drawHilbertCurve = function (index) {
+    console.log("Outside: " + index);
+    if (playAnimation) {
+      var tCoord = (index < 16) ? hilbertCurve[index].toString() : "03";
+      index++;
+      var coord = (tCoord.length == 1) ? "0" + tCoord : tCoord;
+      //console.log("#" + coord);
+      $( "#" + coord ).css("background", "red");
+      $( "#" + coord ).html(index);
+
+      if (index <= 16){
+        // console.log("Indisde: " + index);
+        setTimeout (function() { drawHilbertCurve(index)}, 1000);
+      } else {
+        setTimeout (function() { drawHilbertCurve(0)}, 1000);
+        $( ".musicBox" ).css("background-color", "grey");
+        $( ".musicBox" ).html("");
+      }
+    }
+  }
 
   $( "#viewSwitch" ).click(function() {
     console.log($("#myImage").css("display"));
     if ($("#myImage").css("display") != "none"){
       $("#myImage").css("display", "none");
       $('#myTable').css("display", "table");
+      playAnimation = true;
+      drawHilbertCurve(0);
     } else {
       $("#myImage").css("display", "inline");
       $('#myTable').css("display", "none");
+      playAnimation = false;
     }
   });
 
